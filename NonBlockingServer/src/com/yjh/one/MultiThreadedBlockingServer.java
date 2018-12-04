@@ -1,4 +1,5 @@
-package com.yjh.multithread.block;
+package com.yjh.one;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,11 +20,10 @@ public class MultiThreadedBlockingServer {
 
 	private static void handle(Socket s) throws IOException {
 		new Thread(() -> {
-			System.out.println("Connected to " + s);
 			try (
-				Socket temp = s;
-				InputStream in = s.getInputStream();
-				OutputStream out = s.getOutputStream();
+					Socket temp = s;
+					InputStream in = s.getInputStream();
+					OutputStream out = s.getOutputStream();
 			)   {
 				int data;
 				while((data = in.read()) != -1 ) {
@@ -37,8 +37,10 @@ public class MultiThreadedBlockingServer {
 			}
 		}).start();
 	}
-	
-	private static int transmogrify(int data) {
+
+	public static int transmogrify(int data) {
 		return Character.isLetter(data) ? data ^ ' ' : data;
 	}
+
+
 }

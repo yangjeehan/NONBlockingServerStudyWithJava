@@ -1,4 +1,5 @@
-package com.yjh.single;
+package com.yjh.one;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,9 +20,9 @@ public class SingleThreadedBlockingServer {
 	private static void handle(Socket s) throws IOException {
 		System.out.println("Connected to " + s);
 		try (
-			Socket temp = s;
-			InputStream in = s.getInputStream();
-			OutputStream out = s.getOutputStream();
+				Socket temp = s;
+				InputStream in = s.getInputStream();
+				OutputStream out = s.getOutputStream();
 		)   {
 			int data;
 			while((data = in.read()) != -1 ) {
@@ -31,8 +32,8 @@ public class SingleThreadedBlockingServer {
 			System.out.println("Disconnected from " + s );
 		}
 	}
-	
-	private static int transmogrify(int data) {
+	public static int transmogrify(int data) {
 		return Character.isLetter(data) ? data ^ ' ' : data;
 	}
+
 }
