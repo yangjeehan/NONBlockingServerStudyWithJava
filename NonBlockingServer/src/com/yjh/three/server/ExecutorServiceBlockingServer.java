@@ -15,9 +15,9 @@ public class ExecutorServiceBlockingServer {
 			new ExecutorServiceHandler<>(
 				new PrintingHandler<>(
 					new TransmogrifyHandler()
-		    	), Executors.newCachedThreadPool(),
-					(t,e) -> System.out.println("uncaught: " + t + " error " + e)
-	    	);
+		    	),
+//					Executors.newCachedThreadPool(),
+					Executors.newFixedThreadPool(10));
 
 		while(true) {
 			Socket s = ss.accept();

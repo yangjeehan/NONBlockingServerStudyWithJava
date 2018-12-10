@@ -16,6 +16,13 @@ public class ExecutorServiceHandler<S>
         this.exceptionHandler = exceptionHandler;
     }
 
+    public ExecutorServiceHandler(Handler<S> other,
+                                  ExecutorService pool){
+        this(other, pool,
+               (t, e) -> System.out.println("uncaught : " + t + "error " + e)
+        );
+    }
+
     public void handle(S s) {
         pool.submit(new FutureTask<>(() -> {
             super.handle(s);
